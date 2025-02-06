@@ -1,8 +1,7 @@
 add_executable(lab1_executable src/main.cpp
-        src/Containers/Chain.cpp
-        inc/Containers/Chain.h
-        src/Containers/List.cpp
-        inc/Containers/List.h
+        src/Containers/CircularDoublyLinkedList.cpp
+        inc/Containers/CircularDoublyLinkedList.h
+        inc/Containers/Node.h
         inc/Tests/TestBase.h
         src/Tests/Logical/Test1.cpp
         inc/Tests/Logical/Test1.h

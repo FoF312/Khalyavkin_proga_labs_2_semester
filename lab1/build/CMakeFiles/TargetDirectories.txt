@@ -1,0 +1,3 @@
+D:/BFU_Labs/lab1/build/CMakeFiles/lab1_executable.dir
+D:/BFU_Labs/lab1/build/CMakeFiles/ALL_BUILD.dir
+D:/BFU_Labs/lab1/build/CMakeFiles/ZERO_CHECK.dir
