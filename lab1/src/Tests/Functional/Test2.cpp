@@ -4,7 +4,4 @@
  * Описание того что проверяем.
  * @return
  */
-bool Test2::exec() {
-    std::cout<<std::endl<<"Run12 "<< getTestName() <<"...";
-    return false;
-}
+
