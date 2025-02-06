@@ -1,6 +1,8 @@
-#include "../inc/Containers/CircularDoublyLinkedList.h"
+#include "Containers/CircularDoublyLinkedList.h"
 #include <iostream>
 #include <algorithm>
+#include <vector>
+#include <string>
 #include <cmath>
 
 Node::Node(int val) : data(val), next(nullptr), prev(nullptr) {}
@@ -11,7 +13,8 @@ CircularDoublyLinkedList::CircularDoublyLinkedList() {
     dummy->prev = dummy;
 }
 
-CircularDoublyLinkedList::~CircularDoublyLinkedList() {
+CircularDoublyLinkedList::~CircularDoublyLinkedList() 
+{
     clear();
     delete dummy;
 }
@@ -80,31 +83,46 @@ void CircularDoublyLinkedList::sortByFirstDigitDescending() {
 }
 
 bool CircularDoublyLinkedList::isPrime(int n) {
-    if (n <= 1) return false;
+    if (n == 1) return true;  // Считаем 1 как простое число для целей удаления
     if (n == 2) return true;
-    if (n % 2 == 0) return false;
-    for (int i = 3; i <= std::sqrt(n); i += 2) {
+    if (n <= 1 || n % 2 == 0) return false;
+    
+    int sqrtN = static_cast<int>(std::sqrt(n));
+    for (int i = 3; i <= sqrtN; i += 2) {
         if (n % i == 0) return false;
     }
     return true;
 }
 
 void CircularDoublyLinkedList::removePrimesAndDuplicateMultiplesOf10() {
+    if (countEndingWith2Or4() >= 3) {
+        sortByFirstDigitDescending();
+        return;
+    }
+
     Node* current = dummy->next;
     std::vector<int> multiplesOf10;
 
+    // Сначала собираем числа кратные 10
+    while (current != dummy) {
+        if (current->data % 10 == 0) {
+            multiplesOf10.push_back(current->data);
+        }
+        current = current->next;
+    }
+
+    // Теперь удаляем простые числа
+    current = dummy->next;
     while (current != dummy) {
         Node* nextNode = current->next;
-
         if (isPrime(current->data)) {
+            std::cout << "Removing prime number: " << current->data << std::endl;  // debug
             removeNode(current);
-        }
-        else if (current->data % 10 == 0) {
-            multiplesOf10.push_back(current->data);
         }
         current = nextNode;
     }
 
+    // В конце добавляем дубликаты чисел кратных 10
     for (int multiple : multiplesOf10) {
         append(multiple);
     }

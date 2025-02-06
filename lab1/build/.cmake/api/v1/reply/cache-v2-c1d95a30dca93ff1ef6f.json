@@ -503,7 +503,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files/Project"
+			"value" : "C:/Program Files/lab1"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -675,7 +675,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Project"
+			"value" : "lab1"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1018,7 +1018,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Project_BINARY_DIR",
+			"name" : "lab1_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1030,7 +1030,7 @@
 			"value" : "D:/BFU_Labs/lab1/build"
 		},
 		{
-			"name" : "Project_IS_TOP_LEVEL",
+			"name" : "lab1_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1042,7 +1042,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "Project_SOURCE_DIR",
+			"name" : "lab1_SOURCE_DIR",
 			"properties" : 
 			[
 				{

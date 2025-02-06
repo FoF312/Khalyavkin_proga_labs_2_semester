@@ -7,36 +7,9 @@
     <ClCompile Include="D:\BFU_Labs\lab1\src\Containers\CircularDoublyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\BFU_Labs\lab1\src\Tests\Logical\Test1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\BFU_Labs\lab1\src\Tests\Functional\Test2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\BFU_Labs\lab1\src\Tests\Functional\TestAddNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\BFU_Labs\lab1\inc\Containers\CircularDoublyLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Containers\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Tests\TestBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Tests\Logical\Test1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Tests\Functional\Test2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Tests\TestContoller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\BFU_Labs\lab1\inc\Tests\Functional\TestAddNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

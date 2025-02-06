@@ -1,27 +1,27 @@
-#ifndef CIRCULARDOUBLYLINKEDLIST_H
-#define CIRCULARDOUBLYLINKEDLIST_H
-
-#include "Node.h"
+#pragma once
 #include <vector>
-#include <string>
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int val);
+};
 
 class CircularDoublyLinkedList {
-public:
+private:
     Node* dummy;
+    bool isPrime(int n);
+    void removeNode(Node* node);
 
+public:
     CircularDoublyLinkedList();
     ~CircularDoublyLinkedList();
-
     void append(int data);
     void display();
     int countEndingWith2Or4();
     void sortByFirstDigitDescending();
     void removePrimesAndDuplicateMultiplesOf10();
-
-private:
-    bool isPrime(int n);
-    void removeNode(Node* node);
     void clear();
 };
-
-#endif // CIRCULARDOUBLYLINKEDLIST_H
