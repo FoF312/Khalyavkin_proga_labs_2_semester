@@ -101,30 +101,15 @@ void CircularDoublyLinkedList::removePrimesAndDuplicateMultiplesOf10() {
     }
 
     Node* current = dummy->next;
-    std::vector<int> multiplesOf10;
-
-    // Сначала собираем числа кратные 10
-    while (current != dummy) {
-        if (current->data % 10 == 0) {
-            multiplesOf10.push_back(current->data);
-        }
-        current = current->next;
-    }
-
-    // Теперь удаляем простые числа
-    current = dummy->next;
     while (current != dummy) {
         Node* nextNode = current->next;
-        if (isPrime(current->data)) {
+        if (current->data % 10 == 0) {
+            append(current->data);
+        } else if (isPrime(current->data)) {
             std::cout << "Removing prime number: " << current->data << std::endl;  // debug
             removeNode(current);
         }
         current = nextNode;
-    }
-
-    // В конце добавляем дубликаты чисел кратных 10
-    for (int multiple : multiplesOf10) {
-        append(multiple);
     }
 }
 
@@ -145,4 +130,12 @@ void CircularDoublyLinkedList::clear() {
     }
     dummy->next = dummy;
     dummy->prev = dummy;
+}
+
+int CircularDoublyLinkedList::get(int index) const {
+    Node* current = dummy->next;
+    for(int i = 0; i < index; i++) {
+        current = current->next;
+    }
+    return current->data;
 }
