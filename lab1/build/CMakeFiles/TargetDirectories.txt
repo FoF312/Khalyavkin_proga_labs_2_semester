@@ -1,3 +1,3 @@
-D:/BFU_Labs/lab1/build/CMakeFiles/lab1_executable.dir
-D:/BFU_Labs/lab1/build/CMakeFiles/ALL_BUILD.dir
-D:/BFU_Labs/lab1/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/vlad/Desktop/Сэйв/lab1/build/CMakeFiles/lab1.dir
+C:/Users/vlad/Desktop/Сэйв/lab1/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/vlad/Desktop/Сэйв/lab1/build/CMakeFiles/ZERO_CHECK.dir

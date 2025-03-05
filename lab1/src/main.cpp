@@ -1,22 +1,8 @@
 #include <iostream>
 #include "../inc/Containers/CircularDoublyLinkedList.h"
-//#include "../inc/Tests/Logical/Test1.h"
-//#include "../inc/Tests/Functional/Test2.h"
-//#include "../inc/Tests/Functional/TestAddNode.h"
-//Я как пользователь должен быть максимально проинформирован.
-// Т.е выводим в консоль условия заданий. Описываем что от меня требуется ввести.
-// Если ввел что-то не так описываем что не так и просим ввести заново.
+#include "TestRunner.h"
 
-
-// 1. выводим в консоль условия всех пунктов.
-// 2. Ждем от пользователя интересующий его пункт.
-// 3. Предлагаем пользователю режим. 1) Прогнать тесты. 2) Выполнить работу.
-// Если выбраны тесты то спрашиваем какие запустить все/логические/функциональные
-// Если выполнить работу то описываем то что пользователь должен ввести и ожидаем от него ввода.
-// Если программа продразумевает работу с файлом. То мы ожидаем путь до файла или ничего(enter).
-// Если нажат enter то файл берется по умалчанию из base.
-// Файл ВАЛИДИРУЕМ!!!
-
+TestRunner testrunner;
 
 void printTask() 
 {
@@ -113,7 +99,6 @@ void TestMenu()
         std::cout << "1. All tests\n";
         std::cout << "2. Logic tests\n";
         std::cout << "3. Functional tests\n";
-        std::cout << "0. Back\n";
         std::cout << "Your choice: ";
         std::cin >> type;  
     }
@@ -121,21 +106,17 @@ void TestMenu()
     {
         if (type == 1)
         {
-           
+           testrunner.runAllTests();
         }
         if (type == 2)
         {
-            
+            testrunner.runLogicalTests(); 
         }   
         if (type == 3)
         {
-            
-        }  
-        if (type == 0)
-        {
-            
-        }             
-   }             
+            testrunner.runFunctionalTests();
+        }           
+    }             
 }
 void Menu() 
 {

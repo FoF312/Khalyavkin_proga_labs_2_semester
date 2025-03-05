@@ -24,4 +24,11 @@ public:
     void sortByFirstDigitDescending();
     void removePrimesAndDuplicateMultiplesOf10();
     void clear();
+    int get(int index) const {
+        Node* current = dummy->next;
+        for(int i = 0; i < index; i++) {
+            current = current->next;
+        }
+        return current->data;
+    }
 };
