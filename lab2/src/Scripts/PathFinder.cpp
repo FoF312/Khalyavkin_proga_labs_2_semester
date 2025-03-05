@@ -1,61 +1,70 @@
-#include "../inc/scripts/PathFinder.h"
+#include "../../inc/scripts/PathFinder.h"
 #include <queue>
 #include <vector>
-#include <string>
+#include <climits>
+
+bool PathFinder::isValid(int x, int y, int rows, int cols) {
+    return x >= 0 && y >= 0 && x < rows && y < cols;
+}
+
+int PathFinder::findPath(const std::vector<std::string>& grid, 
+                        std::vector<std::vector<bool>>& visited,
+                        int x, int y, int endX, int endY) {
+    // Базовые случаи
+    if (!isValid(x, y, static_cast<int>(grid.size()), 
+                static_cast<int>(grid[0].size())) || 
+        grid[x][y] == '#' || visited[x][y]) {
+        return INT_MAX;
+    }
+    
+    if (x == endX && y == endY) {
+        return 0;
+    }
+
+    visited[x][y] = true;
+    
+    int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+    int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+    
+    int minSteps = INT_MAX;
+    
+    for (int i = 0; i < 8; i++) {
+        int nextX = x + dx[i];
+        int nextY = y + dy[i];
+        
+        int steps = findPath(grid, visited, nextX, nextY, endX, endY);
+        if (steps != INT_MAX) {
+            minSteps = std::min(minSteps, steps + 1);
+        }
+    }
+    
+    visited[x][y] = false;  // backtracking
+    return minSteps;
+}
 
 int PathFinder::findMinSteps(const std::vector<std::string>& grid) {
-    if (grid.empty()) return -1;
+    int startX = -1, startY = -1;
+    int endX = -1, endY = -1;
 
-    size_t rows = grid.size();
-    size_t cols = grid[0].size();
-
-    int startX = -1, startY = -1, endX = -1, endY = -1;
-    for (size_t i = 0; i < rows; ++i) {
-        for (size_t j = 0; j < cols; ++j) {
+    for (int i = 0; i < static_cast<int>(grid.size()); i++) {
+        for (int j = 0; j < static_cast<int>(grid[i].size()); j++) {
             if (grid[i][j] == 'S') {
-                startX = static_cast<int>(i);
-                startY = static_cast<int>(j);
+                startX = i;
+                startY = j;
             } else if (grid[i][j] == 'E') {
-                endX = static_cast<int>(i);
-                endY = static_cast<int>(j);
+                endX = i;
+                endY = j;
             }
         }
     }
 
     if (startX == -1 || startY == -1 || endX == -1 || endY == -1) {
-        return -1; 
+        return -1;
     }
 
-    int dx[] = {-1, 1, 0, 0};
-    int dy[] = {0, 0, -1, 1};
-
-    std::queue<std::pair<int, int>> q;
-    q.push({startX, startY});
-
-    std::vector<std::vector<int>> steps(rows, std::vector<int>(cols, -1));
-    steps[startX][startY] = 0;
-
-    while (!q.empty()) {
-        auto current = q.front();
-        q.pop();
-        int x = current.first;
-        int y = current.second;
-
-        if (x == endX && y == endY) {
-            return steps[x][y];
-        }
-
-        for (int i = 0; i < 4; ++i) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            
-            if (nx >= 0 && nx < static_cast<int>(rows) && ny >= 0 && ny < static_cast<int>(cols) && grid[nx][ny] != '#' && steps[nx][ny] == -1) {
-                steps[nx][ny] = steps[x][y] + 1;
-                q.push({nx, ny});
-            }
-        }
-    }
-
-    return -1; 
+    std::vector<std::vector<bool>> visited(grid.size(), 
+        std::vector<bool>(grid[0].size(), false));
+    
+    int result = findPath(grid, visited, startX, startY, endX, endY);
+    return result == INT_MAX ? -1 : result;
 }

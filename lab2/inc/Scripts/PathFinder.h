@@ -5,9 +5,11 @@
 
 class PathFinder {
 public:
-    static int findMinSteps(const std::vector<std::string>& grid);
+    int findMinSteps(const std::vector<std::string>& grid);
 private:
-    static bool isValid(int x, int y, int rows, int cols);
-    static int bfs(const std::vector<std::string>& grid, int startX, int startY, int endX, int endY);
+    bool isValid(int x, int y, int rows, int cols);
+    int findPath(const std::vector<std::string>& grid, 
+                 std::vector<std::vector<bool>>& visited,
+                 int x, int y, int endX, int endY);
 };
 

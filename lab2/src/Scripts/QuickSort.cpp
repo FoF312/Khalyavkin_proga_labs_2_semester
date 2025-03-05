@@ -1,8 +1,8 @@
-#include "scripts/QuickSort.h"
+#include "../../inc/scripts/QuickSort.h"
 #include <algorithm>
 
 void QuickSort::sort(std::vector<int>& arr) {
-    quickSortHelper(arr, 0, static_cast<int>(arr.size()) - 1);
+    quickSortHelper(arr, 0, arr.size() - 1);
 }
 
 void QuickSort::quickSortHelper(std::vector<int>& arr, int low, int high) {

@@ -1,7 +1,5 @@
 #include "tests/TestRunner.h"
-#include "TaskExecutor.h"
 #include <iostream>
-
 TestRunner testrunner;
 
 void printTask() 
@@ -19,9 +17,7 @@ void printTask()
 }
 void DoingProgramm()
 {
-    TaskExecutor::runStringLengthTask();
-    TaskExecutor::runQuickSortTask();
-    TaskExecutor::runPathFinderTask();
+
 }
 bool CurrentInput(int choice)
 {
@@ -80,11 +76,11 @@ void TestMenu()
     {
         if (type == 1)
         {
-           testrunner.runAllTests();
+            testrunner.runAllTests();
         }
         if (type == 2)
         {
-             testrunner.runLogicalTests();
+              testrunner.runLogicalTests(); 
         }   
         if (type == 3)
         {
