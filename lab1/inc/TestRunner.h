@@ -1,5 +1,4 @@
-#ifndef TESTRUNNER_H
-#define TESTRUNNER_H
+#pragma once
 
 class TestRunner {
 public:
@@ -22,4 +21,3 @@ public:
     void runLogicSortingTest();
 };
 
-#endif // TESTRUNNER_H
