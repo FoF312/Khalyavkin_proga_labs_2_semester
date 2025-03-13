@@ -1,9 +1,6 @@
-#ifndef BIGINTLOGICALTESTS_H
-#define BIGINTLOGICALTESTS_H
+#pragma once
 
 class BigIntLogicalTests {
 public:
     static void runAllTests();
 };
-
-#endif // BIGINTLOGICALTESTS_H
