@@ -1,9 +1,6 @@
-#ifndef CUBELOGICALTESTS_H
-#define CUBELOGICALTESTS_H
+#pragma once
 
 class CubeLogicalTests {
 public:
     static void runAllTests();
 };
-
-#endif // CUBELOGICALTESTS_H

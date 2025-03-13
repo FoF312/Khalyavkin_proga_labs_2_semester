@@ -1,5 +1,4 @@
-#ifndef CUBE_H
-#define CUBE_H
+#pragma once
 
 #include <cmath>
 
@@ -12,5 +11,3 @@ public:
     double calculateVolume() const;
     double calculateDiagonal() const;
 };
-
-#endif // CUBE_H
