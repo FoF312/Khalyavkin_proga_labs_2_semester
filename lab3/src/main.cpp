@@ -5,11 +5,13 @@
 TestRunner testrunner;
 
 void printTask() {
-    TaskExecutor::printAssignment();
+    std::cout << "=== Assignment ===" << std::endl;
+    std::cout << "1. Cube: Calculate surface area, volume, and diagonal." << std::endl;
+    std::cout << "==================" << std::endl;
 }
 
 void DoingProgramm() {
-    TaskExecutor::runRectangularParallelepipedTask();
+    TaskExecutor::runCubeTask();
 }
 
 bool CurrentInput(int choice) {

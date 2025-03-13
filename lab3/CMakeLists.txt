@@ -8,10 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(lab3
     src/main.cpp
     src/TaskExecutor.cpp
-    src/scripts/RectangularParallelepiped.cpp
+    src/scripts/Cube.cpp
     src/tests/TestRunner.cpp
-    src/tests/Functional/RectangularParallelepipedFunctionalTests.cpp
-    src/tests/Logical/RectangularParallelepipedLogicalTests.cpp
+    src/tests/Functional/CubeFunctionalTests.cpp
+    src/tests/Logical/CubeLogicalTests.cpp
 )
 
 target_include_directories(lab3 PUBLIC
