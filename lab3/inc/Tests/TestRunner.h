@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TESTRUNNER_H
+#define TESTRUNNER_H
 
 class TestRunner {
 public:
@@ -6,3 +7,5 @@ public:
     void runFunctionalTests();
     void runLogicalTests();
 };
+
+#endif // TESTRUNNER_H

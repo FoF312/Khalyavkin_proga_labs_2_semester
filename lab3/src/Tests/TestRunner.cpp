@@ -1,6 +1,6 @@
 #include "../tests/TestRunner.h"
-#include "../tests/Functional/RectangularParallelepipedFunctionalTests.h"
-#include "../tests/Logical/RectangularParallelepipedLogicalTests.h"
+#include "../tests/Functional/CubeFunctionalTests.h"
+#include "../tests/Logical/CubeLogicalTests.h"
 
 void TestRunner::runAllTests() {
     runFunctionalTests();
@@ -8,9 +8,9 @@ void TestRunner::runAllTests() {
 }
 
 void TestRunner::runFunctionalTests() {
-    RectangularParallelepipedFunctionalTests::runAllTests();
+    CubeFunctionalTests::runAllTests();
 }
 
 void TestRunner::runLogicalTests() {
-    RectangularParallelepipedLogicalTests::runAllTests();
+    CubeLogicalTests::runAllTests();
 }
