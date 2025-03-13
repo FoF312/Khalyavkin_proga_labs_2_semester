@@ -1,10 +1,7 @@
-#ifndef TASKEXECUTOR_H
-#define TASKEXECUTOR_H
+#pragma once
 
 class TaskExecutor {
 public:
     static void printAssignment();
     static void runCubeTask();
 };
-
-#endif // TASKEXECUTOR_H
