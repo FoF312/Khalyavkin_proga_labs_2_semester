@@ -1,9 +1,7 @@
-#ifndef BIGINTFUNCTIONALTESTS_H
-#define BIGINTFUNCTIONALTESTS_H
+#pragma once
 
 class BigIntFunctionalTests {
 public:
     static void runAllTests();
 };
 
-#endif // BIGINTFUNCTIONALTESTS_H

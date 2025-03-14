@@ -22,13 +22,22 @@ void BigIntFunctionalTests::runAllTests() {
         std::cout << "Test 2 passed: Addition." << std::endl;
     }
 
+    // Тест вычитания
+    {
+        BigInt a("456");
+        BigInt b("123");
+        BigInt result = a - b;
+        assert(result.to_string() == "333");
+        std::cout << "Test 3 passed: Subtraction." << std::endl;
+    }
+
     // Тест умножения
     {
         BigInt a("123");
         BigInt b("456");
         BigInt result = a * b;
         assert(result.to_string() == "56088");
-        std::cout << "Test 3 passed: Multiplication." << std::endl;
+        std::cout << "Test 4 passed: Multiplication." << std::endl;
     }
 
     // Тест сравнения
@@ -38,7 +47,7 @@ void BigIntFunctionalTests::runAllTests() {
         assert(a < b);
         assert(b > a);
         assert(a != b);
-        std::cout << "Test 4 passed: Comparison operators." << std::endl;
+        std::cout << "Test 5 passed: Comparison operators." << std::endl;
     }
 
     std::cout << "All functional tests passed!\n" << std::endl;

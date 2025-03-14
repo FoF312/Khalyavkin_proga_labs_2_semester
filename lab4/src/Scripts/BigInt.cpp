@@ -1,6 +1,6 @@
 #include "BigInt.h"
-#include <stdexcept>
 #include <algorithm>
+#include <stdexcept>
 
 // Удаление ведущих нулей
 void BigInt::removeLeadingZeros() {
@@ -18,6 +18,42 @@ void BigInt::normalize() {
     if (digits.size() == 1 && digits[0] == 0) {
         isNegative = false;
     }
+}
+
+// Сложение абсолютных значений
+BigInt BigInt::addAbsolute(const BigInt& other) const {
+    BigInt result;
+    result.digits.clear();
+    int carry = 0;
+    size_t maxSize = std::max(digits.size(), other.digits.size());
+    for (size_t i = 0; i < maxSize || carry; ++i) {
+        int sum = carry;
+        if (i < digits.size()) sum += digits[i];
+        if (i < other.digits.size()) sum += other.digits[i];
+        result.digits.push_back(sum % 10);
+        carry = sum / 10;
+    }
+    return result;
+}
+
+// Вычитание абсолютных значений (this >= other)
+BigInt BigInt::subtractAbsolute(const BigInt& other) const {
+    BigInt result;
+    result.digits.clear();
+    int borrow = 0;
+    for (size_t i = 0; i < digits.size(); ++i) {
+        int diff = digits[i] - borrow;
+        if (i < other.digits.size()) diff -= other.digits[i];
+        if (diff < 0) {
+            diff += 10;
+            borrow = 1;
+        } else {
+            borrow = 0;
+        }
+        result.digits.push_back(diff);
+    }
+    result.normalize();
+    return result;
 }
 
 // Конструктор по умолчанию
@@ -76,25 +112,46 @@ BigInt& BigInt::operator=(const BigInt& other) {
     return *this;
 }
 
-// Оператор сложения
-BigInt BigInt::operator+(const BigInt& other) const {
-    if (isNegative != other.isNegative) {
-        throw std::runtime_error("Addition of numbers with different signs is not supported");
-    }
-    BigInt result;
-    result.digits.clear();
-    int carry = 0;
-    size_t maxSize = std::max(digits.size(), other.digits.size());
-    for (size_t i = 0; i < maxSize || carry; ++i) {
-        int sum = carry;
-        if (i < digits.size()) sum += digits[i];
-        if (i < other.digits.size()) sum += other.digits[i];
-        result.digits.push_back(sum % 10);
-        carry = sum / 10;
-    }
-    result.isNegative = isNegative;
+// Унарный минус
+BigInt BigInt::operator-() const {
+    BigInt result(*this);
+    result.isNegative = !result.isNegative;
     result.normalize();
     return result;
+}
+
+// Оператор сложения
+BigInt BigInt::operator+(const BigInt& other) const {
+    if (isNegative == other.isNegative) {
+        BigInt result = addAbsolute(other);
+        result.isNegative = isNegative;
+        return result;
+    } else {
+        if (isNegative) {
+            return other - (-*this);
+        } else {
+            return *this - (-other);
+        }
+    }
+}
+
+// Оператор вычитания
+BigInt BigInt::operator-(const BigInt& other) const {
+    if (isNegative != other.isNegative) {
+        return *this + (-other);
+    } else {
+        if (isNegative) {
+            return (-other) - (-*this);
+        } else {
+            if (*this < other) {
+                BigInt result = other.subtractAbsolute(*this);
+                result.isNegative = true;
+                return result;
+            } else {
+                return subtractAbsolute(other);
+            }
+        }
+    }
 }
 
 // Оператор умножения
@@ -120,11 +177,11 @@ bool BigInt::operator<(const BigInt& other) const {
         return isNegative;
     }
     if (digits.size() != other.digits.size()) {
-        return digits.size() < other.digits.size();
+        return (digits.size() < other.digits.size()) ^ isNegative;
     }
-    for (int i = digits.size() - 1; i >= 0; --i) {
+    for (size_t i = digits.size(); i-- > 0;) {
         if (digits[i] != other.digits[i]) {
-            return digits[i] < other.digits[i];
+            return (digits[i] < other.digits[i]) ^ isNegative;
         }
     }
     return false;
@@ -148,7 +205,7 @@ std::string BigInt::to_string() const {
     if (isNegative) {
         result += '-';
     }
-    for (int i = digits.size() - 1; i >= 0; --i) {
+    for (size_t i = digits.size(); i-- > 0;) {
         result += std::to_string(digits[i]);
     }
     return result;

@@ -24,6 +24,7 @@ void DoingProgramm() {
 
     std::cout << "\nResults:" << std::endl;
     std::cout << "Sum: " << num1 + num2 << std::endl;
+    std::cout << "Difference: " << num1 - num2 << std::endl;
     std::cout << "Product: " << num1 * num2 << std::endl;
     std::cout << "Comparison (num1 < num2): " << (num1 < num2 ? "true" : "false") << std::endl;
     std::cout << "Comparison (num1 == num2): " << (num1 == num2 ? "true" : "false") << std::endl;
