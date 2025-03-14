@@ -1,13 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Название проекта
 project(lab1)
 
-# Установка стандарта C++ (C++17)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Добавление исполняемого файла
 add_executable(lab1
     src/main.cpp
     src/scripts/DoublyLinkedList.cpp
@@ -16,7 +13,6 @@ add_executable(lab1
     src/tests/Logical/DoublyLinkedListLogicalTests.cpp
 )
 
-# Подключение заголовочных файлов
 target_include_directories(lab1 PUBLIC
     ${CMAKE_SOURCE_DIR}/inc
     ${CMAKE_SOURCE_DIR}/inc/scripts

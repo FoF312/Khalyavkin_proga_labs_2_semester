@@ -9,13 +9,12 @@ void DoublyLinkedListLogicalTests::runAllTests() {
     // Тест 1: Обработка последовательности с >= 3 числами, оканчивающимися на 2 или 4
     {
         DoublyLinkedList list;
-        list.insert(12);  // Оканчивается на 2
-        list.insert(34);  // Оканчивается на 4
-        list.insert(56);  // Оканчивается на 6
-        list.insert(22);  // Оканчивается на 2
+        list.insert(12);  
+        list.insert(34);  
+        list.insert(56);  
+        list.insert(22);  
         list.processSequence();
 
-        // Ожидаемый результат: сортировка по первой цифре
         assert(list.getSize() == 4);
         std::cout << "Test 1 passed: Process sequence with >= 3 numbers ending with 2 or 4." << std::endl;
     }
@@ -23,14 +22,13 @@ void DoublyLinkedListLogicalTests::runAllTests() {
     // Тест 2: Обработка последовательности с < 3 числами, оканчивающимися на 2 или 4
     {
         DoublyLinkedList list;
-        list.insert(12);  // Оканчивается на 2
-        list.insert(35);  // Оканчивается на 5
-        list.insert(7);   // Простое число
-        list.insert(20);  // Кратное 10
+        list.insert(12);  
+        list.insert(35);  
+        list.insert(7);   
+        list.insert(20);  
         list.processSequence();
 
-        // Ожидаемый результат: удаление простых чисел и дублирование кратных 10
-        assert(list.getSize() == 4);  // 12, 35, 20, 20
+        assert(list.getSize() == 4);  
         std::cout << "Test 2 passed: Process sequence with < 3 numbers ending with 2 or 4." << std::endl;
     }
 
@@ -39,7 +37,6 @@ void DoublyLinkedListLogicalTests::runAllTests() {
         DoublyLinkedList list;
         list.processSequence();
 
-        // Ожидаемый результат: список остаётся пустым
         assert(list.getSize() == 0);
         std::cout << "Test 3 passed: Process empty sequence." << std::endl;
     }
