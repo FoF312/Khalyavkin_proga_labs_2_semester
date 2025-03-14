@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../inc/Containers/CircularDoublyLinkedList.h"
+#include "../inc/scripts/DoublyLinkedList.h"
 #include "TestRunner.h"
 
 TestRunner testrunner;
@@ -22,7 +22,7 @@ void printTask()
 }
 void DoingProgramm()
 {
-CircularDoublyLinkedList list;
+DoublyLinkedList list;
     int n, number;
 
     std::cout << "Enter the number of elements: ";
@@ -31,23 +31,16 @@ CircularDoublyLinkedList list;
     std::cout << "Enter a sequence of natural numbers:" << std::endl;
     for (int i = 0; i < n; ++i) {
         std::cin >> number;
-        list.append(number);
+        list.insert(number);
     }
 
     std::cout << "Original list: ";
-    list.display();
+    list.print();
 
-    if (list.countEndingWith2Or4() >= 3) {
-        std::cout << "There are at least 3 numbers ending with 2 or 4. Sorting by the first digit in descending order." << std::endl;
-        list.sortByFirstDigitDescending();
-    }
-    else {
-        std::cout << "There are fewer than 3 numbers ending with 2 or 4. Removing primes and duplicating multiples of 10." << std::endl;
-        list.removePrimesAndDuplicateMultiplesOf10();
-    }
+    list.processSequence();
 
     std::cout << "Modified list: ";
-    list.display();
+    list.print();
 }
 bool CurrentInput(int choice)
 {
