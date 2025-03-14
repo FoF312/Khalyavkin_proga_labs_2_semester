@@ -52,7 +52,17 @@ void TestRunner::runPathFinderTests() {
     };
     std::cout << "Grid:" << std::endl;
     Utils::printGrid(grid);
-    int steps = PathFinder::findMinSteps(grid);
-    std::cout << "Min steps: " << steps << std::endl;
+    PathFinder pathFinder;
+    int result = pathFinder.findMinSteps(grid);
+    std::cout << "Min steps: " << result << std::endl;
     std::cout << "PathFinder tests passed!\n" << std::endl;
+}
+
+void TestRunner::runLogicalTests() {
+    runStringLengthTests();
+    runQuickSortTests();
+}
+
+void TestRunner::runFunctionalTests() {
+    runPathFinderTests();
 }

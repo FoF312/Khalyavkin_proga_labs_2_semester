@@ -6,4 +6,6 @@ public:
     void runStringLengthTests();
     void runQuickSortTests();
     void runPathFinderTests();
+    void runLogicalTests();
+    void runFunctionalTests();
 };

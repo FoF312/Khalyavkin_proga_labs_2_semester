@@ -76,15 +76,15 @@ void TestMenu()
     {
         if (type == 1)
         {
-           
+            testrunner.runAllTests();
         }
         if (type == 2)
         {
-             
+              testrunner.runLogicalTests(); 
         }   
         if (type == 3)
         {
-            
+            testrunner.runFunctionalTests();
         }           
     }             
 }
