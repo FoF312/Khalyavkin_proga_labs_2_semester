@@ -1,70 +1,75 @@
-#include "../../inc/scripts/PathFinder.h"
-#include <queue>
-#include <vector>
-#include <climits>
-
-bool PathFinder::isValid(int x, int y, int rows, int cols) {
-    return x >= 0 && y >= 0 && x < rows && y < cols;
-}
-
-int PathFinder::findPath(const std::vector<std::string>& grid, 
-                        std::vector<std::vector<bool>>& visited,
-                        int x, int y, int endX, int endY) {
-    // Базовые случаи
-    if (!isValid(x, y, static_cast<int>(grid.size()), 
-                static_cast<int>(grid[0].size())) || 
-        grid[x][y] == '#' || visited[x][y]) {
-        return INT_MAX;
-    }
-    
-    if (x == endX && y == endY) {
-        return 0;
-    }
-
-    visited[x][y] = true;
-    
-    int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-    int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-    
-    int minSteps = INT_MAX;
-    
-    for (int i = 0; i < 8; i++) {
-        int nextX = x + dx[i];
-        int nextY = y + dy[i];
-        
-        int steps = findPath(grid, visited, nextX, nextY, endX, endY);
-        if (steps != INT_MAX) {
-            minSteps = std::min(minSteps, steps + 1);
-        }
-    }
-    
-    visited[x][y] = false;  // backtracking
-    return minSteps;
-}
+#include "../inc/scripts/PathFinder.h"
 
 int PathFinder::findMinSteps(const std::vector<std::string>& grid) {
-    int startX = -1, startY = -1;
-    int endX = -1, endY = -1;
+    if (grid.empty()) return -1;
 
-    for (int i = 0; i < static_cast<int>(grid.size()); i++) {
-        for (int j = 0; j < static_cast<int>(grid[i].size()); j++) {
-            if (grid[i][j] == 'S') {
-                startX = i;
-                startY = j;
-            } else if (grid[i][j] == 'E') {
-                endX = i;
-                endY = j;
+    int rows = grid.size();
+    int cols = grid[0].size();
+
+    std::pair<int, int> start, end;
+    findStartAndEnd(grid, start, end);
+    
+    // Проверяем, что начальная и конечная точки найдены и достижимы
+    if (start.first == -1 || end.first == -1 || 
+        grid[start.first][start.second] == '#' || 
+        grid[end.first][end.second] == '#') {
+        return -1;
+    }
+
+    // Направления для движения (только вверх, вниз, влево, вправо)
+    int dx[] = {-1, 0, 1, 0};
+    int dy[] = {0, 1, 0, -1};
+
+    // Очередь для BFS
+    std::queue<std::pair<int, int>> q;
+    q.push(start);
+
+    // Массив для хранения количества шагов
+    std::vector<std::vector<int>> steps(rows, std::vector<int>(cols, -1));
+    steps[start.first][start.second] = 0;
+
+    // BFS
+    while (!q.empty()) {
+        auto current = q.front();
+        q.pop();
+        int x = current.first;
+        int y = current.second;
+
+        // Если достигли конечной точки
+        if (x == end.first && y == end.second) {
+            return steps[x][y];
+        }
+
+        // Проверяем все возможные направления
+        for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            // Проверяем, что новая позиция в пределах сетки и не является стеной
+            if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && grid[nx][ny] != '#' && steps[nx][ny] == -1) {
+                steps[nx][ny] = steps[x][y] + 1;
+                q.push({nx, ny});
             }
         }
     }
 
-    if (startX == -1 || startY == -1 || endX == -1 || endY == -1) {
-        return -1;
-    }
+    return -1; // Путь не найден
+}
 
-    std::vector<std::vector<bool>> visited(grid.size(), 
-        std::vector<bool>(grid[0].size(), false));
-    
-    int result = findPath(grid, visited, startX, startY, endX, endY);
-    return result == INT_MAX ? -1 : result;
+void PathFinder::findStartAndEnd(const std::vector<std::string>& grid, std::pair<int, int>& start, std::pair<int, int>& end) {
+    bool foundStart = false, foundEnd = false;
+    for (int i = 0; i < grid.size(); ++i) {
+        for (int j = 0; j < grid[i].size(); ++j) {
+            if (grid[i][j] == 'S') {
+                start = {i, j};
+                foundStart = true;
+            } else if (grid[i][j] == 'E') {
+                end = {i, j};
+                foundEnd = true;
+            }
+        }
+    }
+    if (!foundStart || !foundEnd) {
+        start = end = {-1, -1};  // Установка недопустимых координат
+    }
 }
