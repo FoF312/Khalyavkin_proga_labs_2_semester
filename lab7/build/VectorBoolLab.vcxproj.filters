@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\vlad\Desktop\Labs\lab7\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\vlad\Desktop\Labs\lab7\src\VectorBool\VectorBool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\vlad\Desktop\Labs\lab7\src\Tests\TestRunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\vlad\Desktop\Labs\lab7\src\Tests\Functional\VectorBoolFunctionalTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\vlad\Desktop\Labs\lab7\src\Tests\Logical\VectorBoolLogicalTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vlad\Desktop\Labs\lab7\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9D048B2C-30B5-3210-A727-EB200B011921}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

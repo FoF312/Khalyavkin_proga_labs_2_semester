@@ -1,0 +1,10 @@
+^C:\USERS\VLAD\DESKTOP\LABS\LAB7\BUILD\CMAKEFILES\E9566796C1B836C910480D4A2D9C72E8\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/vlad/Desktop/Labs/lab7 -BC:/Users/vlad/Desktop/Labs/lab7/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/vlad/Desktop/Labs/lab7/build/VectorBoolLab.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

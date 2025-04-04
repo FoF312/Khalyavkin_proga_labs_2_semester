@@ -1,0 +1,3 @@
+C:/Users/vlad/Desktop/Labs/lab7/build/CMakeFiles/VectorBoolLab.dir
+C:/Users/vlad/Desktop/Labs/lab7/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/vlad/Desktop/Labs/lab7/build/CMakeFiles/ZERO_CHECK.dir
