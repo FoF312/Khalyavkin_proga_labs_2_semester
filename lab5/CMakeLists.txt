@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(lab5
     src/main.cpp
-    src/scripts/MyVector.cpp
+    src/MyVector/MyVector.cpp
     src/tests/TestRunner.cpp
     src/tests/Functional/MyVectorFunctionalTests.cpp
     src/tests/Logical/MyVectorLogicalTests.cpp
