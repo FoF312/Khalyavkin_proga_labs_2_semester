@@ -9,51 +9,43 @@ int PathFinder::findMinSteps(const std::vector<std::string>& grid) {
     std::pair<int, int> start, end;
     findStartAndEnd(grid, start, end);
     
-    // Проверяем, что начальная и конечная точки найдены и достижимы
     if (start.first == -1 || end.first == -1 || 
         grid[start.first][start.second] == '#' || 
         grid[end.first][end.second] == '#') {
         return -1;
     }
 
-    // Направления для движения (только вверх, вниз, влево, вправо)
-    int dx[] = {-1, 0, 1, 0};
-    int dy[] = {0, 1, 0, -1};
+    std::vector<std::vector<bool>> visited(rows, std::vector<bool>(cols, false));
+    int minSteps = INT_MAX;
+    
+    dfs(grid, start.first, start.second, end.first, end.second, 0, visited, minSteps);
+    
+    return minSteps == INT_MAX ? -1 : minSteps;
+}
 
-    // Очередь для BFS
-    std::queue<std::pair<int, int>> q;
-    q.push(start);
-
-    // Массив для хранения количества шагов
-    std::vector<std::vector<int>> steps(rows, std::vector<int>(cols, -1));
-    steps[start.first][start.second] = 0;
-
-    // BFS
-    while (!q.empty()) {
-        auto current = q.front();
-        q.pop();
-        int x = current.first;
-        int y = current.second;
-
-        // Если достигли конечной точки
-        if (x == end.first && y == end.second) {
-            return steps[x][y];
-        }
-
-        // Проверяем все возможные направления
-        for (int i = 0; i < 4; ++i) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            // Проверяем, что новая позиция в пределах сетки и не является стеной
-            if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && grid[nx][ny] != '#' && steps[nx][ny] == -1) {
-                steps[nx][ny] = steps[x][y] + 1;
-                q.push({nx, ny});
-            }
-        }
+void PathFinder::dfs(const std::vector<std::string>& grid, int x, int y, int endX, int endY, 
+                    int steps, std::vector<std::vector<bool>>& visited, int& minSteps) {
+    int rows = grid.size();
+    int cols = grid[0].size();
+    
+    if (x < 0 || x >= rows || y < 0 || y >= cols || grid[x][y] == '#' || visited[x][y]) {
+        return;
     }
-
-    return -1; // Путь не найден
+    
+    if (x == endX && y == endY) {
+        minSteps = std::min(minSteps, steps);
+        return;
+    }
+    
+    visited[x][y] = true;
+    
+    // Рекурсивно проверяем все направления
+    dfs(grid, x - 1, y, endX, endY, steps + 1, visited, minSteps); // вверх
+    dfs(grid, x + 1, y, endX, endY, steps + 1, visited, minSteps); // вниз
+    dfs(grid, x, y - 1, endX, endY, steps + 1, visited, minSteps); // влево
+    dfs(grid, x, y + 1, endX, endY, steps + 1, visited, minSteps); // вправо
+    
+    visited[x][y] = false; // откат для бэктрекинга
 }
 
 void PathFinder::findStartAndEnd(const std::vector<std::string>& grid, std::pair<int, int>& start, std::pair<int, int>& end) {
@@ -70,6 +62,6 @@ void PathFinder::findStartAndEnd(const std::vector<std::string>& grid, std::pair
         }
     }
     if (!foundStart || !foundEnd) {
-        start = end = {-1, -1};  // Установка недопустимых координат
+        start = end = {-1, -1};
     }
 }
